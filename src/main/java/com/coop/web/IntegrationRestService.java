@@ -99,7 +99,7 @@ public class IntegrationRestService extends BaseRestService {
 	}
 
 	@PreAuthorize("hasRole('ROLE_INTEGRATION')")
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/dato/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") long id) {
 		try {
 			datoBusiness.delete(id);
