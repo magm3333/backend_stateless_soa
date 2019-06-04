@@ -1,4 +1,4 @@
-package com.coop.web;
+package com.coop.web.integration;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +25,8 @@ import com.coop.business.BusinessException;
 import com.coop.business.IDatoBusiness;
 import com.coop.business.NotFoundException;
 import com.coop.model.Dato;
+import com.coop.web.BaseRestService;
+import com.coop.web.Constantes;
 
 @RestController
 @RequestMapping(Constantes.URL_INTEGRATION)
@@ -34,12 +36,21 @@ public class IntegrationRestService extends BaseRestService {
 	private IDatoBusiness datoBusiness;
 
 	@PreAuthorize("hasRole('ROLE_INTEGRATION')")
+	@GetMapping("/isauth")
+	public ResponseEntity<String> isAuth() {
+		return new ResponseEntity<String>(HttpStatus.OK);
+
+	}
+
+	@PreAuthorize("hasRole('ROLE_INTEGRATION')")
 	@GetMapping("/dato")
 	public ResponseEntity<List<Dato>> list(@RequestParam(value = "topico") String topico,
 			@RequestParam(value = "desde", required = false, defaultValue = "1970-01-01 00:00:00") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date desde,
 			@RequestParam(value = "hasta", required = false, defaultValue = "1970-01-01 00:00:00") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date hasta) {
 		boolean hayDesde = desde.getTime() != 10800000;
-		boolean hayHasta = desde.getTime() != 10800000;
+		boolean hayHasta = hasta.getTime() != 10800000;
+		System.out.println(desde);
+		System.out.println(hasta);
 
 		try {
 			if (hayDesde && hayHasta) {

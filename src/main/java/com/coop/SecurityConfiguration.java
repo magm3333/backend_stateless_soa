@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		String[] resources = new String[] { "/", "/index.html", "/favicon.png", "/app.js", "/config/**",
 				"/directives/**", "/controllers/**", "/img/**", "/lib/**", "/services/**",
 				"/views/**", Constantes.URL_DENY, "/webjars/**", "/swagger-resources/**", "/swagger-ui.html",
-				Constantes.URL_CORE + "/version" };
+				Constantes.URL_CORE + "/version","/v2/**" };
 		http.authorizeRequests().antMatchers(resources).permitAll();
 		
 		

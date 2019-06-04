@@ -20,7 +20,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket apiConfig() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.coop"))
+				.apis(RequestHandlerSelectors.basePackage("com.coop.web.integration"))
 				.paths(PathSelectors.any()).build()
 				.apiInfo(apiInfo());
 	}
